@@ -1,1 +1,32 @@
 <h1>This is <%= @user.username %>'s page!</h1>
+<%= link_to "Host an event", new_event_path %>
+<%= link_to "See all events", events_path %>
+<br>
+<% if @user.hostings.any? %>
+  <p>Hosting:</p>
+  <% @user.hostings.each do |event| %>
+    <h2><%= event.description %></h2>
+    <h3>at: <%= event.location %></h3>
+    <h4>on: <%= event.event_date %></h4>
+  <% end %>
+<% end %>
+
+<br>
+
+<% if !@upcoming_events.nil? %>
+  <p>Upcoming events:</p>
+  <% @upcoming_events.pluck(:description,:event_date).each do |event| %>
+    <h2><%= event[0] %></h2>
+    <h3><%= event[1] %></h3>
+  <% end %>
+<% end %>
+
+<br>
+
+<% if !@prev_events.nil? %>
+  <p>Previous events:</p>
+  <% @prev_events.pluck(:description,:event_date).each do |event| %>
+    <h2><%= event[0] %></h2>
+    <h3><%= event[1] %></h3>
+  <% end %>
+<% end %>

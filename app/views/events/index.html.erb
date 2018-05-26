@@ -1,0 +1,18 @@
+<% if !session[:id].nil? %>
+  <%= link_to "Host an event", new_event_path %>
+<% end %>
+
+<h1>List of events:</h1>
+<%= link_to "Upcoming events", "#event_upcoming" %>
+<%= link_to "Past events", "#event_past" %>
+<h2 id="event_upcoming">Upcoming events</h2>
+<% @events.upcoming.each do |event| %>
+  <h3><%= link_to event.description, event_path(event) %></h3>
+  <p>on: <%= event.event_date %></p>
+<% end %>
+<br>
+<h2 id="event_past">Past events</h2>
+<% @events.past.each do |event| %>
+  <h3><%= link_to event.description, event_path(event) %></h3>
+  <p>on: <%= event.event_date %></p>
+<% end %>

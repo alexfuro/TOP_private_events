@@ -8,15 +8,18 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       flash[:success] = "Your account has been created!"
-      redirect_to request.referrer || root_url
+      log_in(@user)
+      redirect_to root_path
     else
       flash.now[:danger] = "Your account was not saved!"
-      render 'new'
+      render new_user_path
     end
   end
 
   def show
     @user = User.find(params[:id])
+    @upcoming_events = current_user.upcoming_events
+    @prev_events = current_user.previous_events
   end
 
   private

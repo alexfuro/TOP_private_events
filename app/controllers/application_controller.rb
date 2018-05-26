@@ -4,4 +4,12 @@ class ApplicationController < ActionController::Base
   def log_in(user)
     session[:id] = user.id
   end
+
+  def current_user
+    @current_user ||= User.find(session[:id])
+  end
+
+  def current_user=(user)
+    @current_user = user
+  end
 end
