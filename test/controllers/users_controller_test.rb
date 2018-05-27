@@ -26,6 +26,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should display user page" do
+    log_in_as(@user)
     get user_path(@user)
 
     assert_response :success

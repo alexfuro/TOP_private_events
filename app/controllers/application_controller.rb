@@ -3,6 +3,7 @@ class ApplicationController < ActionController::Base
 
   def log_in(user)
     session[:id] = user.id
+    current_user
   end
 
   def current_user

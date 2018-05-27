@@ -2,6 +2,7 @@
 <p>hosted by: <%= @event.creator.username %></p>
 <p><%= @event.attendances.count %> are attending:</p>
 
+<%= render 'attendances/new'  unless session[:id].nil? || @hosting || @attending %>
 <ul>
   <% @event.attendees.pluck(:username).each do |attendee| %>
     <li><%= attendee %></li>

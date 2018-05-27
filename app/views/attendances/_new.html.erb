@@ -1,0 +1,12 @@
+<%= form_for(@attendance) do |f| %>
+  <%= render 'shared/errors', object: f.object %>
+
+  
+  <%= f.text_field :attended_event_id, type: :hidden %>
+
+
+  <%= f.text_field :attendee_id, type: :hidden %>
+
+  <%= f.submit "Attend" %>
+
+<% end %>

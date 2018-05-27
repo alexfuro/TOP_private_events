@@ -23,6 +23,9 @@ class EventsController < ApplicationController
 
   def show
     @event = Event.find(params[:id])
+    @attendance = @event.attendances.build(attendee_id: session[:id])
+    @hosting = hosting?
+    @attending = attending?
   end
 
   private
@@ -32,5 +35,13 @@ class EventsController < ApplicationController
 
     def logged_in?
       redirect_to new_session_path if session[:id].nil?
+    end
+
+    def hosting?
+      @event.creator_id == session[:id]
+    end
+
+    def attending?
+      @event.attendees.pluck(:attendee_id).include?(session[:id])
     end
 end

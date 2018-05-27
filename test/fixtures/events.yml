@@ -11,3 +11,9 @@ two:
   location: MyString
   event_date: 2018-05-25
   creator_id: MyString
+
+special_pub:
+  description: special_pub
+  location: MyString
+  event_date: 2018-05-25
+  creator_id: 413685242

@@ -3,7 +3,7 @@ require 'test_helper'
 class EventsControllerTest < ActionDispatch::IntegrationTest
 
   def setup
-    @user = User.first
+    @user = users(:dave)
     log_in_as(@user)
   end
 
@@ -34,6 +34,7 @@ class EventsControllerTest < ActionDispatch::IntegrationTest
 
   test "gets show event page" do
     @event = Event.first
+    
     get event_path(@event)
     assert_response :success
   end
