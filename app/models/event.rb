@@ -3,8 +3,10 @@ class Event < ApplicationRecord
   has_many   :attendances, foreign_key: "attended_event"
   has_many   :attendees, through: :attendances, source: "attendee"
 
-  scope :past,     -> { where("event_date <  :today", {today: Time.zone.now}) }
-  scope :upcoming, -> { where("event_date >= :today", {today: Time.zone.now}) }
+  scope :past,     -> { where("event_date <  :today",
+                              {today: Time.zone.now}).order(:event_date) }
+  scope :upcoming, -> { where("event_date >= :today",
+                              {today: Time.zone.now}).order(:event_date) }
 
   validates  :description, presence: true
   validates  :location,    presence: true
